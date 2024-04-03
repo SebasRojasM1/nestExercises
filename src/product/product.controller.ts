@@ -8,7 +8,8 @@ import { ProductService } from './product.service';
 @Controller('product')
 export class ProductController {
 
-    constructor(private productService: ProductService){}
+    constructor(private productService: ProductService){}   //Llamamos los metodos con un CONSTRUCTOR
+
 
     @Post("/create") //Localhost:4000/product/create
     async createPost(@Res() res, @Body() createProductDTO: CreateProductDTO){ //@Body() createProductDTO: Quiere decir que se está transfiriendo desde la app de cliente al servidor
@@ -20,7 +21,8 @@ export class ProductController {
             product: product //Enviale el producto enviado/creado
         })
     }
-
+    /*@Res() se usa para inyectar el objeto de respuesta HTTP en el método.
+     Esto te permite manipular directamente la respuesta que será enviada al cliente desde tu controlador.*/
 
     @Get("/")
     async getProducts(@Res() res){

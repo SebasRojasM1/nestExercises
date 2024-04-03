@@ -1,3 +1,6 @@
+/*DTO (Data Transfer Object) se utiliza para definir la estructura de los datos que 
+se transfieren entre diferentes partes de la aplicación */
+
 //Declaramos la estructura de la DB y su tipo de campo
 export class CreateProductDTO {
     readonly name: string;

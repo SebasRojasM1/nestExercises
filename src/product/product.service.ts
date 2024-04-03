@@ -3,7 +3,6 @@ import { Model } from 'mongoose'; //Ayuda a importar un modelo para consultar co
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './interfaces/product.interface';
 import { CreateProductDTO } from './dto/product.dto'; //El DTO Ayuda a definir lo que voy a estar enviando y recibiendo desde la app
-import { create } from 'domain';
 
 @Injectable()
 export class ProductService {//Product de Product.module

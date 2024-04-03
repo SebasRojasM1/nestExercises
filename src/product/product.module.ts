@@ -8,7 +8,7 @@ import { ProductSquema } from './schemas/product.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([ //Importamos nuestros squemas. Podemos hacer varios.
-      {name: 'Product', schema: ProductSquema} //Los metodos los hacemos en product.service 
+      {name: 'Product', schema: ProductSquema} //name ayuda a localizar con exactitud nuestra DB. y schema pasamos el esquema con sus estructura
     ])
   ],
   controllers: [ProductController],
