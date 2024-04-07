@@ -6,20 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.StudentsModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const students_module_1 = require("./students/students.module");
+const students_service_1 = require("./students.service");
+const students_controller_1 = require("./students.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-let AppModule = class AppModule {
+const students_schema_1 = require("./schema/students.schema");
+let StudentsModule = class StudentsModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.StudentsModule = StudentsModule;
+exports.StudentsModule = StudentsModule = __decorate([
     (0, common_1.Module)({
-        imports: [students_module_1.StudentsModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://sebasrojasm1:JukZsyyNGB80ep4R@cluster0.lhj2or0.mongodb.net/')],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: students_schema_1.Students.name, schema: students_schema_1.StudentSchema }])],
+        providers: [students_service_1.StudentsService],
+        controllers: [students_controller_1.StudentsController]
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], StudentsModule);
+//# sourceMappingURL=students.module.js.map
