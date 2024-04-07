@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductModule } from './product/product.module';
+import { StudentsModule } from './students/students.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
-@Module({                         //Especificamos la ruta de nuestro MongoDB
-  imports: [ProductModule, MongooseModule.forRoot("mongodb+srv://sebasrojasm1:IjnnasA6Fb27gnqF@cluster0.ziozbk9.mongodb.net/", )], 
+@Module({
+  imports: [StudentsModule, MongooseModule.forRoot('mongodb+srv://sebasrojasm1:JukZsyyNGB80ep4R@cluster0.lhj2or0.mongodb.net/')],
   controllers: [AppController],
   providers: [AppService],
 })
