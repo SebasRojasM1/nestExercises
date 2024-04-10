@@ -1,0 +1,37 @@
+#1. Listar todos los libros registrados
+http://localhost:3000/libros
+
+
+
+#2. Ver detalles de un libro por ID
+http://localhost:3000/libros/ID
+
+
+
+#3. Crear un nuevo libro (FORMULARIO)
+http://localhost:3000/libros/create
+
+
+
+#4. Actualizar un libro por ID
+http://localhost:3000/libros/update/ID
+
+
+
+#5. Eliminar un libro por ID
+http://localhost:3000/libros/delete/ID
+
+
+
+#6. Listar libros por author
+http://localhost:3000/libros/author/NOMBREAUTHOR
+
+
+
+#7. Filtrar por nombre del libro
+http://localhost:3000/libros/name/NOMBRELIBRO
+
+
+
+#8. Filtrar por cantidad de páginas
+http://localhost:3000/libros/pages/NUMEROPAGINAS
