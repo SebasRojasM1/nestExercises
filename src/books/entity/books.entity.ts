@@ -21,4 +21,4 @@ export class Book extends Document {
   createdAt?: Date;
 }
 
-export const BookSchema = SchemaFactory.createForClass(Book);
+export const BookSchema = SchemaFactory.createForClass(Book)

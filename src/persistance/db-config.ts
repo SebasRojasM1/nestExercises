@@ -1,4 +1,4 @@
-/*OBJETIVO: 
+/*OBJETIVO:
 Se definirá  una configuracion para establecer la conexion a MONGODB*/
 
 //registerAs (del paquete @nestjs/config) ayuda a registrar una configuracion que crearemos

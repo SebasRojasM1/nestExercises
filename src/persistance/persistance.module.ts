@@ -18,7 +18,7 @@ se encarga de la configuración y la inicialización de la conexión a la base d
     MongooseModule.forRootAsync({
       useFactory: (configService: ConfigType<typeof dbConfig>) => { //Le pasamos la configuracion a ConfigType (mirar descripcion arriba) y retorna una funcion para establecer la conexion a la DB
         const { db, env } = configService; //Destructura los elementos de dbConfig: DB y ENV
-        
+
         //Contruimos la conexion a MongoDB
         const uriDb =
           env === 'local' //Verifica que si el entorno es local. Si es asi, se ejecutará una conexion LOCAL

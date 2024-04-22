@@ -9,7 +9,7 @@ import { PersistanceModule } from './persistance/persistance.module';
     load: [dbConfig],
     isGlobal: true,
     }),
-    PersistanceModule
+    PersistanceModule,
   ],
   controllers: [],
   providers: [],
