@@ -23,7 +23,7 @@ se encarga de la configuración y la inicialización de la conexión a la base d
         const uriDb =
           env === 'local' //Verifica que si el entorno es local. Si es asi, se ejecutará una conexion LOCAL
             ? `${db.connection}${db.host}/${db.name}`
-            : `mongodb+srv://${db.user}:${db.password}@cluster0.lhj2or0.mongodb.net/`;
+            : `mongodb+srv://${db.user}:${db.password}@cluster0.mongodb.net/${db.name}?retryWrite=true&w=majority`;
             //Si no, se ejecutará esta opcion, que es para usar la base de datos ATLAS: 
 
             //(El uso de "?" y ":" se llama Operaciones Ternarias, es lo mismo que "IF-ELSE" resumido en una sola linea de codigo)
