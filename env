@@ -1,0 +1,17 @@
+#Database configuration for localhost Server
+DB_CONNECTION = mongodb://
+DB_HOST = localhost:27017
+DB_NAME = library
+DB_USER = sebasrojasm1
+DB_PASSWORD = JukZsyyNGB80ep4R
+
+#Informacion de su base de datos
+
+
+
+#Database configuration for remote Server
+#DB_CONNECTION = books
+#DB_HOST = mongodb://
+#DB_NAME = localhost:3000
+#DB_USER = sebasrojasm1
+#DB_PASSWORD = JukZsyyNGB80ep4R
