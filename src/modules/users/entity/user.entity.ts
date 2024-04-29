@@ -7,8 +7,18 @@ import {
   IsString,
   Length,
   Matches,
+  IsEnum
 } from 'class-validator';
 import { Document } from 'mongoose';
+
+
+//Listado de roles a utilizar (Observar la prop "Roles")
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin',
+  SELLER = 'seller',
+}
+
 
 @Schema({ timestamps: true })
 export class User extends Document {
@@ -19,10 +29,12 @@ export class User extends Document {
   @Prop({ required: true })
   userName?: string;
 
+
   @IsEmail()
   @Transform(({ value }) => value.toLowerCase()) //Transforma el valor ingresado en minusculas (Lowercase)
   @Prop({ required: true })
   email: string;
+
 
   @IsNotEmpty()
   @IsString()
@@ -34,6 +46,13 @@ export class User extends Document {
   })
   @Prop({ required: true })
   password: string;
+
+
+  @IsOptional()
+  @IsEnum(UserRole) //Pasamos el listado de Roles disponibles, por medio de un ENUM
+  @Prop({ type: String, enum: UserRole, default: UserRole.USER })
+  role: UserRole;
+  //El valor serà uno de los 3 listados en el Enum
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

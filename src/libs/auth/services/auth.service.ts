@@ -1,6 +1,6 @@
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { HashService } from '../../shared/services/hash.service';
+import { HashService } from '../../utils/services/hash.service';
 import { SignUpDto, UserLoginDto } from '../DTOs/index';
 import { JwtPayload, Tokens } from '../types';
 import { UserService } from 'src/modules/users/services/users.service';
@@ -13,8 +13,7 @@ export class AuthService {
     private readonly hashService: HashService,
   ) {}
 
-
-
+  
 
   async logIn(userLogInDto: UserLoginDto) {
     //Verifica que el email ingresado (Usuario) exista...
@@ -43,23 +42,24 @@ export class AuthService {
 
 
 
-  async signUp(signUPDto: SignUpDto): Promise<Tokens> {
+  async signUp(userRegister: SignUpDto): Promise<Tokens> {
     /*validateEmailForSignUp es un metodo creado (Se creó mas abajo. Mirar) La cual tiene como objetivo verificar 
       si el Email ingresado ya está en uso*/
-    await this.validateEmailForSignUp(signUPDto.email);
+    await this.validateEmailForSignUp(userRegister.email);
 
 
     /*Utiliza el servicio hashService (Del contructor) para almacenar de forma segura (encriptada) la contraseña.
       Este servicio hace el llamado de Hash.services.ts del folder "Shared", donde se implementó la logica para 
       encriptar contraseñas*/
-    const hashedPassword = await this.hashService.hash(signUPDto.password);
+    const hashedPassword = await this.hashService.hash(userRegister.password);
 
 
     //Se crea el usuario con email, user y password(Ya encriptado/hashed)
     const user = await this.userService.create({
-      email: signUPDto.email,
-      userName: signUPDto.name,
+      email: userRegister.email,
+      userName: userRegister.name,
       password: hashedPassword,
+      role: userRegister.role,
     });
 
 
