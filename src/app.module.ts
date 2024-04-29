@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+0import { Module } from '@nestjs/common';
 import dbConfig from './persistance/db-config';
 import { ConfigModule } from '@nestjs/config';
 import { PersistanceModule } from './persistance/persistance.module';
