@@ -19,7 +19,7 @@ import {
   export class BooksController {
     constructor(private readonly booksService: BooksService) {}
   
-    @Post()
+    @Post("create")
     async create(@Body() bookDto: BookDto) {
       return await this.booksService.create(bookDto);
     }
