@@ -9,4 +9,4 @@ const providers = [HashService];
   providers,
   exports: [...providers],
 })
-export class SharedModule {}
+export class UtilsModule {}

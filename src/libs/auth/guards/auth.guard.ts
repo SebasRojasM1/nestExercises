@@ -39,9 +39,9 @@ export class AtGuard extends AuthGuard('jwt') {
 
     /*Si se encuentra el metadato isPublic y su valor es true, indica que la ruta es pública y no requiere 
     autenticación. Devuelve true, lo que significa que puede continuar sin autenticación. */
-    if (isPublic) return true;
+    if (isPublic) return Promise.resolve(true);
 
-    return super.canActivate(context);
+    return super.canActivate(context) as Promise<boolean>;
   }
 
 

@@ -17,7 +17,7 @@ export class AuthService {
 
   async logIn(userLogInDto: UserLoginDto) {
     //Verifica que el email ingresado (Usuario) exista...
-    const user = await this.userService.findOneByEmail(userLogInDto.email);
+    const user = await this.userService.findOneByEmailRegister(userLogInDto.email);
     if (!user) {
       throw new BadRequestException('User not found');
     }
@@ -42,7 +42,7 @@ export class AuthService {
 
 
 
-  async signUp(userRegister: SignUpDto): Promise<Tokens> {
+  async register(userRegister: SignUpDto): Promise<Tokens> {
     /*validateEmailForSignUp es un metodo creado (Se creó mas abajo. Mirar) La cual tiene como objetivo verificar 
       si el Email ingresado ya está en uso*/
     await this.validateEmailForSignUp(userRegister.email);
@@ -57,7 +57,7 @@ export class AuthService {
     //Se crea el usuario con email, user y password(Ya encriptado/hashed)
     const user = await this.userService.create({
       email: userRegister.email,
-      userName: userRegister.name,
+      userName: userRegister.userName,
       password: hashedPassword,
       role: userRegister.role,
     });
@@ -117,7 +117,7 @@ export class AuthService {
 
   //Metodo para verificar si el Email ingresado ya existe (Devuelve un booleano True o False)
   async validateEmailForSignUp(email: string): Promise<boolean | undefined> {
-    const user = await this.userService.findOneByEmail(email);
+    const user = await this.userService.findOneByEmailRegister(email);
 
     if (user) {
       throw new HttpException('Email already exists!', 400);

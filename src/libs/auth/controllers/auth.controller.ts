@@ -28,7 +28,7 @@ export class AuthController {
   /*Se crea en base al DTO de registro, incluyendo el metodo signUp, donde de hace el Hash (encriptado) 
     de la contraseña para el usuario creado*/
   async register(@Body() signUpDto: SignUpDto) {
-    const token = await this.authService.signUp(signUpDto);
+    const token = await this.authService.register(signUpDto);
 
     /*Devuelve un objeto, donde tiene las "reglas" del encriptado, entre ellas, que la contraseña es un string */
     return { access_token: token.access_token };
@@ -43,7 +43,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   /*Verifica el email con el email ingresado, y adicional, con el metodo "logIn" compara la contraseña ingresada
     con la contraseña encriptada (Hash)*/
-  async login(@Body() userLogInDto: UserLoginDto) {
+  async logIn(@Body() userLogInDto: UserLoginDto) {
     const token = await this.authService.logIn(userLogInDto);
 
     return { access_token: token.access_token };

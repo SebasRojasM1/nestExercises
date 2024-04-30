@@ -5,7 +5,7 @@ export class CreateUserDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  userName?: string;
+  userName: string;
 
   @ApiProperty()
   @IsEmail()
@@ -16,6 +16,9 @@ export class CreateUserDto {
   @IsString()
   password: string;
   
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
   role: string;
 }
 
