@@ -14,7 +14,9 @@ import { Logger } from '@nestjs/common'; //se utiliza para registrar informació
 @Injectable()
 export class AtGuard extends AuthGuard('jwt') {
 
-  /* Se crea una nueva instancia de Logger utilizando el nombre de la clase AtGuard*/
+  /* Se crea una nueva instancia de Logger utilizando el nombre de la clase AtGuard.
+  Este se vincula en el metodo CHECK del controlador AUTH para que pueda vincularse al momento de colocarse CHECK*/
+  
   private readonly logger = new Logger(AtGuard.name);
 
   /*El constructor recibe una instancia de Reflector, que se utiliza para leer metadatos de los decoradores. 
@@ -33,8 +35,8 @@ export class AtGuard extends AuthGuard('jwt') {
 
       /*Especifica los lugares donde se buscará el metadato. En este caso, se busca primero en el método de la ruta 
       (context.getHandler()) y luego en la clase controladora context.getClass()). */
-      context.getHandler(), //Rutas
-      context.getClass(),   //Clase controladora
+      context.getHandler(), //Rutas (Del contexto: ExecutionCOntext)
+      context.getClass(),   //Clase controladora (Del contexto: ExecutionCOntext)
     ]);
 
     /*Si se encuentra el metadato isPublic y su valor es true, indica que la ruta es pública y no requiere 

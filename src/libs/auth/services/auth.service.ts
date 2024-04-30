@@ -111,6 +111,7 @@ export class AuthService {
     return await this.jwtService.signAsync(payload, {
       secret: secretKey,
       ...options, //Impementamos "Options" para darle la posibilidad de configurarlo posteriormente
+                  //O en resumen, reserva parte de memoria para esto.
     });
   }
 

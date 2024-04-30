@@ -27,7 +27,7 @@ export class User extends Document {
   // Minimum length 3 and maximum length 50
   @Length(3, 50)
   @Prop({ required: true })
-  userName?: string;
+  username?: string;
 
 
   @IsEmail()
