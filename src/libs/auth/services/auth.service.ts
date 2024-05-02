@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { HashService } from '../../utils/services/hash.service';
@@ -7,17 +8,18 @@ import { UserService } from 'src/modules/users/services/users.service';
 
 @Injectable()
 export class AuthService {
-  constructor( //se inyectan los servicios necesarios para la autenticación de usuarios
+  constructor(
+    //se inyectan los servicios necesarios para la autenticación de usuarios
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
     private readonly hashService: HashService,
   ) {}
 
-  
-
   async logIn(userLogInDto: UserLoginDto) {
     //Verifica que el email ingresado (Usuario) exista...
-    const user = await this.userService.findOneByEmailRegister(userLogInDto.email);
+    const user = await this.userService.findOneByEmail(
+      userLogInDto.email,
+    );
     if (!user) {
       throw new BadRequestException('User not found');
     }
@@ -39,29 +41,23 @@ export class AuthService {
       la carga útil (payload) del token, que contiene el identificador unico del usuario (id). */
   }
 
-
-
-
   async register(userRegister: SignUpDto): Promise<Tokens> {
     /*validateEmailForSignUp es un metodo creado (Se creó mas abajo. Mirar) La cual tiene como objetivo verificar 
       si el Email ingresado ya está en uso*/
     await this.validateEmailForSignUp(userRegister.email);
-
 
     /*Utiliza el servicio hashService (Del contructor) para almacenar de forma segura (encriptada) la contraseña.
       Este servicio hace el llamado de Hash.services.ts del folder "Shared", donde se implementó la logica para 
       encriptar contraseñas*/
     const hashedPassword = await this.hashService.hash(userRegister.password);
 
-
     //Se crea el usuario con email, user y password(Ya encriptado/hashed)
     const user = await this.userService.create({
       email: userRegister.email,
-      userName: userRegister.userName,
+      username: userRegister.username,
       password: hashedPassword,
       role: userRegister.role,
     });
-
 
     return await this.getTokens({
       sub: user.id,
@@ -71,14 +67,11 @@ export class AuthService {
       la carga útil (payload) del token, que contiene el identificador unico del usuario (id). */
   }
 
-
-
-
   async getTokens(jwtPayload: JwtPayload): Promise<Tokens> {
-
     /*Obtenemos la KEY o TOKEN que almacenamos en el .env. */
-    const secretKey = process.env.SECRET_KEY;
-    if (!secretKey) { //Si no existe la variable SECRET_KEY o no tiene valor...
+    const secretKey = process.env.JWT_SECRET;
+    if (!secretKey) {
+      //Si no existe la variable JWT_SECRET o no tiene valor...
       throw new Error('SECRET_KEY is not set');
     }
 
@@ -98,10 +91,6 @@ export class AuthService {
     return { access_token: accessToken };
   }
 
-
-
-
-
   /*Este método funciona para firmar un token JWT con el payload (payload), la clave (secretKey) y 
    opciones adicionales (options). El método devuelve una promesa que devuelve el token JWT firmado. 
    
@@ -111,10 +100,9 @@ export class AuthService {
     return await this.jwtService.signAsync(payload, {
       secret: secretKey,
       ...options, //Impementamos "Options" para darle la posibilidad de configurarlo posteriormente
-                  //O en resumen, reserva parte de memoria para esto.
+      //O en resumen, reserva parte de memoria para esto.
     });
   }
-
 
   //Metodo para verificar si el Email ingresado ya existe (Devuelve un booleano True o False)
   async validateEmailForSignUp(email: string): Promise<boolean | undefined> {

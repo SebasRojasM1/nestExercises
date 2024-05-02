@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   HttpException,
   HttpStatus,
@@ -32,13 +33,9 @@ export class UserService {
     return createdUser.save();
   }
 
-
-
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }
-
-
 
   async findOne(id: string): Promise<User> {
     const user = await this.userModel.findById(id).exec();
@@ -48,9 +45,7 @@ export class UserService {
     return user;
   }
 
-
-
-  async findOneByEmailRegister(email: string): Promise<User> {
+  async findOneByEmail(email: string): Promise<User> {
     const user = await this.userModel.findOne({ email }).exec();
     if (!user) {
       throw new NotFoundException(`User with email ${email} not found`);
@@ -58,8 +53,14 @@ export class UserService {
     return user;
   }
 
+  async findOneByEmailRegister(email: string): Promise<User> {
+    const user = await this.userModel.findOne({ email }).exec();
+    if (user) {
+      throw new NotFoundException(`User with email ${email} already exists`);
+    }
+    return user;
+  }
 
-  
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const updatedUser = await this.userModel
       .findByIdAndUpdate(id, updateUserDto, { new: true })
@@ -69,8 +70,6 @@ export class UserService {
     }
     return updatedUser;
   }
-
-
 
   async remove(id: string): Promise<void> {
     const user = await this.userModel.findOneAndDelete().exec();

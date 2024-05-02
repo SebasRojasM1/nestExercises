@@ -5,7 +5,7 @@ export class CreateUserDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  userName: string;
+  username: string;
 
   @ApiProperty()
   @IsEmail()
@@ -21,7 +21,6 @@ export class CreateUserDto {
   @IsString()
   role: string;
 }
-
 
 /*
 Swagger (una herramienta que genera documentación automáticamente para tu API)
