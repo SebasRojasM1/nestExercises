@@ -45,18 +45,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Repository Installation:
+Clone this repository to your local machine to access the Event API, using the following command:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone -b workshop1 https://github.com/SebasRojasM1/typescriptTasks.git
 ```
+
+## Running the API with POSTMAN
+Access the Postman collection to use the API
+
+[POSTMAN](https://www.postman.com/maintenance-operator-95682430/workspace/nestjs/collection/33425968-4dd6022c-ee2d-4d53-ae1d-a88dc4c4acf6?action=share&creator=33425968)
+
 
 ## Support
 
