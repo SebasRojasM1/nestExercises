@@ -1,32 +1,32 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, IsDate } from 'class-validator';
 import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Event extends Document {
-  @IsString()
-  @Prop({ required: true })
-  id: string;
-
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
+  @Prop({ required: true })
   name: string;
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsString()
-  date: string;
+  @IsDate()
+  @Prop({ required: true })
+  date: Date;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
+  @Prop({ required: true })
   location: string;
 
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
+  @Prop({ required: true })
   capacity: number;
 }
 
