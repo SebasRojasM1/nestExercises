@@ -49,7 +49,7 @@ $ npm run start:prod
 Clone this repository to your local machine to access the Event API, using the following command:
 
 ```bash
-git clone -b workshop1 https://github.com/SebasRojasM1/typescriptTasks.git
+git clone -b api-Events https://github.com/SebasRojasM1/nestExercises.git
 ```
 
 ## Running the API with POSTMAN
