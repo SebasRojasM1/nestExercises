@@ -53,10 +53,13 @@ export class AuthService {
 
     //Se crea el usuario con email, user y password(Ya encriptado/hashed)
     const user = await this.userService.create({
-      email: userRegister.email,
+      /* email: userRegister.email,
       username: userRegister.username,
       password: hashedPassword,
-      role: userRegister.role,
+      role: userRegister.role, */
+
+      ...userRegister, //Copia las estructura del objeto, y luego especificamos la propiedad a reemplazar (En este caso, password)
+      password: hashedPassword
     });
 
     return await this.getTokens({
