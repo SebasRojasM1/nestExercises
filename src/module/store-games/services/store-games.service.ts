@@ -14,7 +14,7 @@ export class StoreGamesService {
     return await this.gameRepository.save(game);
   }
 
-  async findAll({limit, order, page, search, sortBy}: PaginationQueryDto) {
+  async findForSearch({limit, order, page, search, sortBy}: PaginationQueryDto) {
     const [results, total] = await this.gameRepository.findAndCount({
       where: search ? { name: ILike(`%${search}%`) } : {},
       order: { [sortBy]: order },
@@ -30,6 +30,10 @@ export class StoreGamesService {
     };
   }
 
+  async fillAllData(){
+    return await this.gameRepository.find()
+  }
+
   async findOne(id: string) {
     const game = await this.gameRepository.findOneBy( {id} )
 
@@ -37,6 +41,7 @@ export class StoreGamesService {
 
     return game
   }
+
   async update(id: string, updateGame: UpdateStoreGameDto): Promise<StoreGame> {
     const storeGame = await this.gameRepository.findOneBy({ id });
   

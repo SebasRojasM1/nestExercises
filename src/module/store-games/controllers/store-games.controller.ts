@@ -14,9 +14,14 @@ export class StoreGamesController {
     return this.gamesService.create(createGame);
   }
 
+  @Get("/all")
+  findAll() {
+    return this.gamesService.fillAllData();
+  }
+
   @Get()
-  findAll(@Query() pagination: PaginationQueryDto) {
-    return this.gamesService.findAll(pagination);
+  findBySearch(@Query() pagination: PaginationQueryDto) {
+    return this.gamesService.findForSearch(pagination);
   }
 
   @Get(':id')
