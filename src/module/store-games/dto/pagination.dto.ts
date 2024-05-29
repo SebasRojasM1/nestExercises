@@ -1,4 +1,4 @@
-import { IsOptional, IsString, IsInt, IsIn, IsNumber } from 'class-validator';
+import { IsOptional, IsString, IsInt, IsNumber } from 'class-validator';
 
 export class PaginationQueryDto {
   @IsOptional()
@@ -10,7 +10,7 @@ export class PaginationQueryDto {
   sortBy?: string;
 
   @IsOptional()
-  @IsIn(['ASC', 'DESC'])
+  @IsString()
   order?: 'ASC' | 'DESC';
 
   @IsOptional()
