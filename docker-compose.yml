@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:11
+    container_name: postgres_db
+    restart: always
+    expose:
+      - '5433'
+    environment:
+      POSTGRES_DB: db_crud
+      POSTGRES_USER: user_crud
+      POSTGRES_PASSWORD: root
+
+    volumes:
+      - '.db/data:/var/lib/postgresql/data'
+    ports:
+      - '5433:5433'
