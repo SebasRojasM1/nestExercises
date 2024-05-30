@@ -25,7 +25,6 @@ import { ConfigModule } from '@nestjs/config';
       extra: {
         ssl: true,
       },
-      ssl: process.env.DB_SSL === 'true'
     }),
     TypeOrmModule.forFeature([StoreGame]), // Register your entities
     StoreGamesModule,

@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { StoreGamesService } from '../services/store-games.service';
-import { CreateStoreGameDto } from '../dto/create-store-game.dto';
-import { UpdateStoreGameDto } from '../dto/update-store-game.dto';
-import { PaginationQueryDto } from '../dto';
+import { CreateStoreGameDto, UpdateStoreGameDto, PaginationQueryDto } from '../dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Games store') 
